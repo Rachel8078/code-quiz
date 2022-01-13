@@ -9,16 +9,19 @@
 </head>
 <body>
     <header>
-        <button class="btn">View High Scores</button>
-        <p>Timer</p>
+        <p id="high-scores">View High Scores</p>
+        <p id="timer">Timer</p>
     </header>
-    <main class="page-content">
-        <section class="question-wrapper">
-            <h1 class="question">Coding Quiz Challenge</h1>
-            <ul class="answer-list">
-                <li class="answer-option">Try to answer the following coding related questions within the time limit.  Incorrect answers will make you lose 10 extra seconds/points!</li>
+    <main class="content">
+        <section id="question-wrapper">
+            <h1 id="question">Answer these questions about JavaScript and win!</h1>
+            <ul id="answers">
+                <button class="btn" id="answer-a">Answer 1</button>
+                <button class="btn" id="answer-b">Answer 2</button>
+                <button class="btn" id="answer-c">Answer 3</button>
+                <button class="btn" id="answer-d">Answer 4</button>
+                <button class="start-btn" id="start-btn">Start</button>
             </ul>
-            <button class="btn">Start Quiz</button>
         </section>
     </main>
     <footer>
