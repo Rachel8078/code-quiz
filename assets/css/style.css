@@ -1,7 +1,8 @@
-::before, ::after {
+* {
     box-sizing: border-box;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
+    margin: 10;
+    padding: 0;
 }
 
 header {
@@ -21,30 +22,61 @@ button.select {
 }
 
 #question-wrapper {
-    width: 500px;
-    max-width: 80%;
+    max-width: max-content;
     padding: 10px;
   
+}
+
+.question-wrapper {
+    text-align: center;
+}
+
+.answers {
+    display: flex;
+    justify-content: center;
+
 }
 
 #answers {
     display: flex;
     flex-direction: column;
     width: max-content;
-    margin: 20px;
+    margin: 60px;
     gap: 10px;
+    justify-content: right;
+    padding-left: 20px;
 }
 
-.btn {
+.btn, #answer-a, #answer-b, #answer-c, #answer-d {
+    text-align: left;
+    background-color: rgb(51,0,102);
     color: white;
-    background-color: blue;
-    border-radius: 5px;
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+    font-size: 20px;
+}
+
+#answer-a:hover, #answer-b:hover, #answer-c:hover, #answer-d:hover {
+    background-color: rgba(51,0,102,.5);
+}
+
+.start-btn-wrapper {
+    display: flex;
+    justify-content: center;
 }
 
 .start-btn {
     font-size: 36px;
+    background-color: rgb(51,0,102);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    }
 
-}
+.start-btn:hover {
+    background-color: rgba(51,0,102,.5);
+}    
 
 .hide {
     display: none;
@@ -52,4 +84,8 @@ button.select {
 
 .show {
     display: ;
+}
+
+footer {
+    text-align: center;
 }

@@ -10,22 +10,24 @@
 <body>
     <header>
         <p id="high-scores">View High Scores</p>
-        <p id="timer">Timer</p>
+        <p id="timer"></p>
     </header>
     <main class="content">
-        <section id="question-wrapper">
+        <section class="question-wrapper" id="question-wrapper">
             <h1 id="question">Answer these questions about JavaScript and win!</h1>
-            <ul id="answers">
+            <div class="answers" id="answers">
                 <button class="btn" id="answer-a">Answer 1</button>
                 <button class="btn" id="answer-b">Answer 2</button>
                 <button class="btn" id="answer-c">Answer 3</button>
                 <button class="btn" id="answer-d">Answer 4</button>
+            </div>
+            <div class="start-btn-wrapper">
                 <button class="start-btn" id="start-btn">Start</button>
-            </ul>
+            </div>
         </section>
     </main>
     <footer>
-        <p class="answer-confirm">Right or Wrong?</p>
+        <p class="answer-confirm"></p>
     </footer>
 
     <script src="assets/js/script.js"></script>
