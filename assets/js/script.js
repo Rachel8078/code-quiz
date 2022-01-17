@@ -1,6 +1,3 @@
-// var question = document.querySelector("#question")
-// var answers = Array.from(document.querySelectorAll(".answers"));
-
 var startButton = document.querySelector("#start-btn");
 var questionEl = document.querySelector("#question");
 var answerButtonEl = document.querySelector("#answers");
@@ -12,12 +9,15 @@ var answerConfirm =document.querySelector("#answer-confirm");
 var timer = document.querySelector("#timer");
 var score = document.querySelector("#score");
 var initials = document.querySelector("#initials");
+var highScores = document.querySelector("#high-scores");
+var scoreList = document.querySelector("#score-list")
 
 var count = 50;
 var questionAmount = 5
 questionCounter = 0
 score.style.display = "none";
 initials.style.display = "none";
+scoreList.style.display = "none";
 
 // array containing questions and answers
 var questionBank = [
@@ -70,7 +70,7 @@ var timeInterval = setInterval(function() {
     timer.innerHTML = "Timer: " + count--;
     if(count == 0) {
         clearInterval(timeInterval);
-        endQuiz();
+        // endQuiz();
     }
     }, 1000); 
 };
@@ -122,23 +122,34 @@ var endQuiz = function() {
     answerC.style.display = "none";
     answerD.style.display = "none";
     score.style.display = "table-row";
-    initials.style.display = "table-row";
+    initials.style.display = "table-row";   
 }
-
-
-
-var highScore = function(event) {
-    event.preventDefault();
-
-    console.log("Your score has been added")
-}
-
-       
+     
 // when startButton is clicked, startQuiz runs
 startButton.addEventListener("click", startQuiz);
 
 // when an answerButtonEl is clicked, the nextQuestion function runs
 answerButtonEl.addEventListener("click", nextQuestion);
 
+highScores.addEventListener("click", viewScores);
+
 // submits score and initials to localStorage
-score.addEventListener("submit", highScore);
+score.addEventListener("click", function(event) {
+    event.preventDefault();
+    var highScore = event.target;
+        localStorage.setItem("initials", JSON.stringify(initials));
+        localStorage.setItem("score", JSON.stringify(count));
+
+        viewScores();
+    });
+
+var viewScores = function() {
+    questionEl.textContent = "High Scores:"
+    console.log(localStorage.getItem("initials"));
+    console.log(localStorage.getItem("score"));
+    score.style.display = "none";
+    initials.style.display = "none";
+    scoreList.style.display = "table-column";
+
+    scoreList.textContent = localStorage.getItem(initials) + localStorage.getItem(score);
+}

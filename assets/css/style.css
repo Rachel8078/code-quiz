@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     margin: 10;
     padding: 0;
 }
@@ -100,4 +100,9 @@ footer {
 form {
     margin: 20px;
     padding: 20px;
+}
+
+#high-scores {
+    text-decoration: underline;
+    color: rgba(51,0,102,.5);
 }
