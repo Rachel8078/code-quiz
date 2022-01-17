@@ -10,8 +10,10 @@ var answerC = document.querySelector("#answer-c");
 var answerD = document.querySelector("#answer-d");
 var answerConfirm =document.querySelector("#answer-confirm");
 var timer = document.querySelector("#timer");
-
-var questionCounter = 0
+//var score = document.createElement()
+var count = 50;
+var questionAmount = 5
+questionCounter = 0
 
 // array containing questions and answers
 var questionBank = [
@@ -24,43 +26,55 @@ var questionBank = [
         correct: "A) <script>",
     },
     {
-        question: "Question 2",
-        answer1: "A) option",
-        answer2: "B) option",
-        answer3: "C) option",
-        answer4: "D) option",
-        correct: "B) option",
+        question: "Where is the correct place to insert a JavaScript?",
+        answer1: "A) The <body> section",
+        answer2: "B) The <head> section",
+        answer3: "C) The <header> section",
+        answer4: "D) All of these",
+        correct: "A) The <body> section",
     },
     {
-        question: "Question 3",
-        answer1: "A) 3",
-        answer2: "B) 3",
-        answer3: "C) 3",
-        answer4: "D) 3",
-        correct: "D) 3",
+        question: "How do you write \"Hello World\" in an alert box?",
+        answer1: "A) msg(\"Hello World\");",
+        answer2: "B) alertBox(\"Hello World\");",
+        answer3: "C) alert(\"Hello World\");",
+        answer4: "D) msgBox(\"Hello World\");",
+        correct: "C) alert(\"Hello World\");",
     },
     {
-        question: "Question 4",
-        answer1: "A) 4",
-        answer2: "B) 4",
-        answer3: "C) 4",
-        answer4: "D) 4",
-        correct: "C) 4",
+        question: "How do you create a function in JavaScript?",
+        answer1: "A) function = myFunction()",
+        answer2: "B) function {myFunction()}",
+        answer3: "C) function:myFunction()",
+        answer4: "D) var function()",
+        correct: "A) function = myFunction()",
     },
     {
-        question: "Question 5",
-        answer1: "A) 5",
-        answer2: "B) 5",
-        answer3: "C) 5",
-        answer4: "D) 5",
-        correct: "B) 5",
+        question: "How to write and IF statement in JavaScript?",
+        answer1: "A) if(i == 5)",
+        answer2: "B) if i == 5 then",
+        answer3: "C) if i = 5 then",
+        answer4: "D) if i = 5",
+        correct: "A) if(i == 5)",
     },
 ];
+
+// timer function reduces by 1 every second, and reduces and additional 10 for wrong answers
+//**TO DO: make timer reduce by 10 for wrong answers */
+var startTimer = function() {
+setInterval(function() {
+    timer.innerHTML = "Timer: " + count--;
+    if(count <= 0) {
+        clearInterval(startTimer);
+        endQuiz();
+    }
+    }, 1000);  
+};
 
 // when startButton is clicked, startButton disappears and first question/answers appear
 var startQuiz = function () {
     questionCounter = 0
-    timer.textContent = "Timer: " + 100
+    startTimer();
 
     startButton.style.display = "none";
     answerA.style.display = "table-column";
@@ -73,40 +87,40 @@ var startQuiz = function () {
     answerB.textContent = questionBank[questionCounter].answer2;
     answerC.textContent = questionBank[questionCounter].answer3;
     answerD.textContent = questionBank[questionCounter].answer4;
-}
+};
 
+// displays the next question to answer
 var nextQuestion = function() {
-   var correctAnswer = alert("Correct answer is: " + questionBank[questionCounter].correct)
+   var correctAnswer = console.log("Correct answer is: " + questionBank[questionCounter].correct)
     
    questionCounter++
-   score();
 
    questionEl.textContent = questionBank[questionCounter].question;
    answerA.textContent = questionBank[questionCounter].answer1;
    answerB.textContent = questionBank[questionCounter].answer2;
    answerC.textContent = questionBank[questionCounter].answer3;
    answerD.textContent = questionBank[questionCounter].answer4;
-   
+
+   if (questionCounter > questionAmount) {
+       console.log(questionCounter);
+       console.log(questionAmount);
+       endQuiz();
+   }
 }
 
 // write function to look at the clicked on answer to determine if it's correct
 function correctConfirm() {
 
 };
-    
 
-// the timer needs to start when startButtonEl is clicked
-// timer should start with time of x and reduce by y every time an answer is selected
-// if the wrong answer is chosen timer should reduct by 10
-var score = function() {
-    if (questionBank.correct === correct) {
-    timer -= 5
-    } else {
-        timer -= 10
-    }
-return timer;
+var endQuiz = function() {
+    questionEl.textContent = "All Done! Your score is " + count;
+    answerA.style.display = "none";
+    answerB.style.display = "none";
+    answerC.style.display = "none";
+    answerD.style.display = "none";
+    // Create form to Enter initials with submit button
 }
-
 
        
 // when startButton is clicked, startQuiz runs
