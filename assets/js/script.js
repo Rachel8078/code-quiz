@@ -1,5 +1,5 @@
-var question = document.querySelector("#question")
-var answers = Array.from(document.querySelectorAll(".answers"));
+// var question = document.querySelector("#question")
+// var answers = Array.from(document.querySelectorAll(".answers"));
 
 var startButton = document.querySelector("#start-btn");
 var questionEl = document.querySelector("#question");
@@ -10,10 +10,14 @@ var answerC = document.querySelector("#answer-c");
 var answerD = document.querySelector("#answer-d");
 var answerConfirm =document.querySelector("#answer-confirm");
 var timer = document.querySelector("#timer");
-//var score = document.createElement()
+var score = document.querySelector("#score");
+var initials = document.querySelector("#initials");
+
 var count = 50;
 var questionAmount = 5
 questionCounter = 0
+score.style.display = "none";
+initials.style.display = "none";
 
 // array containing questions and answers
 var questionBank = [
@@ -62,13 +66,13 @@ var questionBank = [
 // timer function reduces by 1 every second, and reduces and additional 10 for wrong answers
 //**TO DO: make timer reduce by 10 for wrong answers */
 var startTimer = function() {
-setInterval(function() {
+var timeInterval = setInterval(function() {
     timer.innerHTML = "Timer: " + count--;
-    if(count <= 0) {
-        clearInterval(startTimer);
+    if(count == 0) {
+        clearInterval(timeInterval);
         endQuiz();
     }
-    }, 1000);  
+    }, 1000); 
 };
 
 // when startButton is clicked, startButton disappears and first question/answers appear
@@ -101,9 +105,7 @@ var nextQuestion = function() {
    answerC.textContent = questionBank[questionCounter].answer3;
    answerD.textContent = questionBank[questionCounter].answer4;
 
-   if (questionCounter > questionAmount) {
-       console.log(questionCounter);
-       console.log(questionAmount);
+   if (questionAmount - 1 <= questionCounter) {
        endQuiz();
    }
 }
@@ -119,7 +121,16 @@ var endQuiz = function() {
     answerB.style.display = "none";
     answerC.style.display = "none";
     answerD.style.display = "none";
-    // Create form to Enter initials with submit button
+    score.style.display = "table-row";
+    initials.style.display = "table-row";
+}
+
+
+
+var highScore = function(event) {
+    event.preventDefault();
+
+    console.log("Your score has been added")
 }
 
        
@@ -128,3 +139,6 @@ startButton.addEventListener("click", startQuiz);
 
 // when an answerButtonEl is clicked, the nextQuestion function runs
 answerButtonEl.addEventListener("click", nextQuestion);
+
+// submits score and initials to localStorage
+score.addEventListener("submit", highScore);
